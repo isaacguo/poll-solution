@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: PollGateway
+
+server:
+  port: 8080
+
+---
+spring:
+  profiles: dev,default
+
+app:
+  questionFile: c:\\users\\yueguo01\\desktop\\poll.txt
+---
+spring:
+  profiles: production
+
+app:
+  questionFile: /root/poll.txt
