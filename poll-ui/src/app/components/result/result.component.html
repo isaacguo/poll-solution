@@ -1,9 +1,10 @@
 <div *ngIf="questions!=null" class="container">
   <div class="row">
     <button class="btn btn-default" (click)="onRefreshButtonClicked()">刷新</button>
+    <p class="text-center">参与人数: {{pollCounts}}</p>
   </div>
   <div *ngFor="let question of questions; let qIndex = index;" class="row">
-    <label class="control-label">{{question.question}}</label>
+    <p class="text-center">{{question.question}}</p>
 
     <div style="display: block">
       <canvas baseChart
@@ -13,7 +14,5 @@
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
-
-
   </div>
 </div>

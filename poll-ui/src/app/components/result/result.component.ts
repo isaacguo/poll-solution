@@ -10,6 +10,7 @@ import {Question} from "../../dto/question.model";
 export class ResultComponent implements OnInit {
 
   questions: Question[];
+  pollCounts: number=0;
 
   constructor(private questionService: QuestionService) {
   }
@@ -20,13 +21,17 @@ export class ResultComponent implements OnInit {
   }
 
 
-  onRefreshButtonClicked()
-  {
+  onRefreshButtonClicked() {
     this.getData();
   }
+
   getData() {
     this.questionService.getQuestions().subscribe(r => {
       this.questions = r;
+      this.pollCounts=0;
+      this.questions[0].availableAnswers.forEach(c=>{
+        this.pollCounts+=c.selectedCount;
+      });
     });
   }
 
