@@ -1,5 +1,8 @@
+import {AnswerItemModel} from "./answer.item.model";
+
 export class Question {
-  constructor(public question:string,
-              public availableAnswers:string[]) {
+  constructor(public id: number,
+              public question: string,
+              public availableAnswers: AnswerItemModel[]) {
   }
 }

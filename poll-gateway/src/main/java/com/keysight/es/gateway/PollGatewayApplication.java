@@ -1,5 +1,6 @@
 package com.keysight.es.gateway;
 
+import com.keysight.es.gateway.entities.PollEntity;
 import com.keysight.es.gateway.entities.QuestionEntity;
 import com.keysight.es.gateway.repositories.QuestionRepository;
 import org.springframework.boot.CommandLineRunner;

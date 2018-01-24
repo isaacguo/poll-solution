@@ -5,7 +5,7 @@
       <div class="margin10px">
         Hi, 请点击<span class="glyphicon glyphicon-menu-right"></span> 开始填写调查问卷， 本问卷无记名
         <p></p>
-        <button type="button" class="btn btn-secondary" (click)="onShowQRButonClicked()">Show QR Code</button>
+        <button type="button" class="btn btn-default" (click)="onShowQRButonClicked()">Show QR Code</button>
         <div *ngIf="showQRCode" class="row">
           <qr-code [value]=url [size]="150"></qr-code>
         </div>
@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="btn-group">
-          <button type="button" class="btn btn-secondary" nextStep><span class="glyphicon glyphicon-menu-right"></span>
+          <button type="button" class="btn btn-default" nextStep><span class="glyphicon glyphicon-menu-right"></span>
           </button>
         </div>
       </div>
@@ -29,14 +29,17 @@
       <ul class="list-group">
         <li class="list-group-item"
             *ngFor="let availableAnswer of question.availableAnswers; let aIndex=index"
-            [ngClass]="{'active':isHighlighted(qIndex,aIndex)}" (click)="onItemClick(qIndex, aIndex)">
-          {{availableAnswer}}
+            [ngClass]="{'active':isHighlighted(qIndex,availableAnswer)}"
+            (click)="onItemClick(qIndex,availableAnswer)">
+          {{availableAnswer.answer}}
         </li>
       </ul>
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary" previousStep><span class="glyphicon glyphicon-menu-left"></span>
+        <button type="button" class="btn btn-default margin10px" previousStep><span
+          class="glyphicon glyphicon-menu-left"></span>
         </button>
-        <button type="button" class="btn btn-secondary" nextStep><span class="glyphicon glyphicon-menu-right"></span>
+        <button type="button" class="btn btn-default  margin10px" nextStep><span
+          class="glyphicon glyphicon-menu-right"></span>
         </button>
       </div>
     </div>
@@ -49,7 +52,7 @@
       </div>
       <div class="row">
         <div class="btn-group">
-          <button type="button" class="btn btn-secondary" nextStep>提交</button>
+          <button type="button" class="btn btn-default" nextStep (click)="onSubmitButtonClicked()">提交</button>
         </div>
       </div>
     </div>

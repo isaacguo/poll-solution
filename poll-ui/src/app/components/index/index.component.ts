@@ -2,6 +2,9 @@ import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {QuestionService} from "../../services/question.service";
 import {Question} from "../../dto/question.model";
 import {DOCUMENT} from '@angular/common';
+import {PollService} from "../../services/poll.service";
+import {Poll} from "../../dto/poll.model";
+import {AnswerItemModel} from "../../dto/answer.item.model";
 
 
 @Component({
@@ -15,8 +18,11 @@ export class IndexComponent implements OnInit {
   answers: number[] = [];
   url: string;
   showQRCode: boolean = false;
+  polls: Poll[] = [];
 
-  constructor(private questionService: QuestionService, @Inject(DOCUMENT) private document: Document) {
+  constructor(private questionService: QuestionService,
+              @Inject(DOCUMENT) private document: Document,
+              private pollService: PollService) {
     this.url = this.document.location.href;
     console.log(this.url);
   }
@@ -27,24 +33,32 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  onItemClick(qIndex, aIndex) {
-    console.log(qIndex);
-    console.log(aIndex);
-    this.answers[qIndex] = aIndex;
+  onSubmitButtonClicked()
+  {
+    this.pollService.submitPoll(this.polls).subscribe(r=>{
+      console.log("post successful");
+
+    });
   }
 
-  isHighlighted(qIndex: number, aIndex: number): boolean {
 
-    if (this.answers.length < qIndex) return false;
+  onItemClick(qIndex: number, answerId: AnswerItemModel) {
 
-    if (this.answers[qIndex] != null && this.answers[qIndex] === aIndex) return true;
+    let poll = new Poll(this.questions[qIndex], answerId);
+    this.polls[qIndex] = poll;
+    console.log(this.polls);
+  }
+
+  isHighlighted(qIndex: number, answerId: AnswerItemModel): boolean {
+
+    if (this.polls.length < qIndex) return false;
+
+    if (this.polls[qIndex] != null && this.polls[qIndex].answer.id === answerId.id) return true;
     else return false;
-
-
   }
 
 
   onShowQRButonClicked() {
-    this.showQRCode=!this.showQRCode;
+    this.showQRCode = !this.showQRCode;
   }
 }

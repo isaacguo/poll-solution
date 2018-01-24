@@ -8,19 +8,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PollEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne
-    @JsonManagedReference("poll-question")
     QuestionEntity question;
+    private AnswerItemEntity answer;
+
 
 
 }
