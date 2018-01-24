@@ -23,7 +23,7 @@ public class QuestionEntity {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     @JsonManagedReference("question-answers")
-    private List<AnswerItemEntity> availableAnswers=new LinkedList<>();
+    private List<AnswerItemEntity> availableAnswers = new LinkedList<>();
 
     /*
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
@@ -31,20 +31,10 @@ public class QuestionEntity {
     private List<PollEntity> pollList=new LinkedList<>();
     */
 
-    public void addAvailableAnswer(String answer)
-    {
-        AnswerItemEntity aie=new AnswerItemEntity();
+    public void addAvailableAnswer(String answer) {
+        AnswerItemEntity aie = new AnswerItemEntity();
         aie.setAnswer(answer);
         aie.setQuestion(this);
         this.availableAnswers.add(aie);
     }
-
-    /*
-    public void addPoll(PollEntity poll)
-    {
-        if(poll==null) return;
-        poll.setQuestion(this);
-        this.pollList.add(poll);
-    }
-    */
 }

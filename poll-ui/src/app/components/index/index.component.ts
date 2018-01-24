@@ -37,16 +37,13 @@ export class IndexComponent implements OnInit {
   {
     this.pollService.submitPoll(this.polls).subscribe(r=>{
       console.log("post successful");
-
     });
   }
 
 
   onItemClick(qIndex: number, answerId: AnswerItemModel) {
-
     let poll = new Poll(this.questions[qIndex], answerId);
     this.polls[qIndex] = poll;
-    console.log(this.polls);
   }
 
   isHighlighted(qIndex: number, answerId: AnswerItemModel): boolean {

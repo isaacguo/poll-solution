@@ -11,6 +11,7 @@ import {QuestionService} from "./services/question.service";
 import {QRCodeModule} from "angular2-qrcode";
 import {ResultComponent} from './components/result/result.component';
 import {PollService} from "./services/poll.service";
+import {ChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {PollService} from "./services/poll.service";
     routing,
     HttpModule,
     ArchwizardModule,
-    QRCodeModule
+    QRCodeModule,
+    ChartsModule
 
   ],
   providers: [
