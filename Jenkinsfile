@@ -13,7 +13,6 @@ node {
         }
 
 
-        /*
         stage("Quality Gate") {
             timeout(time: 1, unit: 'HOURS') {
                 def qg = waitForQualityGate()
@@ -22,7 +21,6 @@ node {
                 }
             }
         }
-        */
 
 
         stage('Build and Push Docker Image') {

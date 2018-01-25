@@ -32,33 +32,44 @@ public class PollGatewayApplication {
                 if (!file.exists()) {
                     return;
                 }
-                Scanner scanner = new Scanner(file);
-                String line;
-                QuestionEntity qe = new QuestionEntity();
-                boolean inMode = false;
-                scanner.nextLine();
-                while (scanner.hasNext()) {
-                    line = scanner.nextLine();
-                    if (line.equals("---")) {
-                        if (!inMode) {
-                            inMode = true;
-                            line = scanner.nextLine();
-                            qe.setQuestion(line);
-                        } else {
-                            questionRepository.save(qe);
-                            qe = new QuestionEntity();
-                            inMode = false;
-                        }
+                Scanner scanner=null;
+                try
+                {
+                     scanner = new Scanner(file);
+                    String line;
+                    QuestionEntity qe = new QuestionEntity();
+                    boolean inMode = false;
+                    scanner.nextLine();
+                    while (scanner.hasNext()) {
+                        line = scanner.nextLine();
+                        if (line.equals("---")) {
+                            if (!inMode) {
+                                inMode = true;
+                                line = scanner.nextLine();
+                                qe.setQuestion(line);
+                            } else {
+                                questionRepository.save(qe);
+                                qe = new QuestionEntity();
+                                inMode = false;
+                            }
                         /*
                         while (scanner.hasNext() && scanner.nextLine().equals("---")) {
                             qe.addAvailableAnswer(line);
                         }
                         */
-                    } else {
-                        qe.addAvailableAnswer(line);
+                        } else {
+                            qe.addAvailableAnswer(line);
+                        }
+
                     }
+                }
+                finally {
+                   if(scanner!=null)
+                       scanner.close();
 
                 }
+
+
             }
 
         };
