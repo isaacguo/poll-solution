@@ -32,10 +32,9 @@ public class PollGatewayApplication {
                 if (!file.exists()) {
                     return;
                 }
-                Scanner scanner=null;
-                try
+                try(Scanner scanner = new Scanner(file);)
                 {
-                     scanner = new Scanner(file);
+
                     String line;
                     QuestionEntity qe = new QuestionEntity();
                     boolean inMode = false;
@@ -63,11 +62,7 @@ public class PollGatewayApplication {
 
                     }
                 }
-                finally {
-                   if(scanner!=null)
-                       scanner.close();
 
-                }
 
 
             }
