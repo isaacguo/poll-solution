@@ -7,9 +7,9 @@ node {
 
         stage("Package & Code Analysis") {
             notifyBuild("In Package & Code Analysis")
-            //withSonarQubeEnv('SonarQubeLocal') {
+            withSonarQubeEnv('SonarQubeLocal') {
                 sh 'mvn -B clean package sonar:sonar -Ddockerfile.skip'
-            //}
+            }
         }
 
 
