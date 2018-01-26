@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-@Data
-@AllArgsConstructor
 public class PollServiceImpl implements PollService {
+    public PollServiceImpl(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
 
     private final QuestionRepository questionRepository;
 

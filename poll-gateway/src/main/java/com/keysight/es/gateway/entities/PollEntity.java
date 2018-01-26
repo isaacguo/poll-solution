@@ -1,21 +1,23 @@
 package com.keysight.es.gateway.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PollEntity {
+    public QuestionEntity getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QuestionEntity question) {
+        this.question = question;
+    }
+
+    public AnswerItemEntity getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(AnswerItemEntity answer) {
+        this.answer = answer;
+    }
 
     QuestionEntity question;
     private AnswerItemEntity answer;
-
-
 
 }

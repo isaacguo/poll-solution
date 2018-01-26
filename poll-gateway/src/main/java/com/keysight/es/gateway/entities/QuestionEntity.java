@@ -12,8 +12,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@Data
 public class QuestionEntity {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public List<AnswerItemEntity> getAvailableAnswers() {
+        return availableAnswers;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

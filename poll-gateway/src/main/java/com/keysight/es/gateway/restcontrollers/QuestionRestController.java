@@ -12,9 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/questions")
-@Data
-@AllArgsConstructor
 public class QuestionRestController {
+    public QuestionRestController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
 
     private final QuestionService questionService;
 
