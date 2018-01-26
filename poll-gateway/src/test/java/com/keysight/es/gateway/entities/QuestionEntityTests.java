@@ -18,11 +18,20 @@ public class QuestionEntityTests {
         QuestionEntity questionEntity = getQuestionEntity();
         assertThat(questionEntity, hasProperty("id", is(1L)));
     }
+    @Test
+    public void givenQuestionEntityThenItHasFieldAvailableAnswer()
+    {
+        QuestionEntity questionEntity=getQuestionEntity();
+        assertThat(questionEntity,hasProperty("availableAnswers"));
+    }
 
     private QuestionEntity getQuestionEntity() {
         QuestionEntity qe = new QuestionEntity();
         qe.setQuestion("Q1");
         qe.setId(1L);
+        qe.addAvailableAnswer("1");
+        qe.addAvailableAnswer("2");
+        qe.addAvailableAnswer("3");
 
         return qe;
     }
