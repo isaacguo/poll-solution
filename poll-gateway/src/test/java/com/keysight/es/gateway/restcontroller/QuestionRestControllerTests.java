@@ -1,8 +1,6 @@
 package com.keysight.es.gateway.restcontroller;
 
-import com.keysight.es.gateway.restcontrollers.PollRestController;
 import com.keysight.es.gateway.restcontrollers.QuestionRestController;
-import com.keysight.es.gateway.services.PollService;
 import com.keysight.es.gateway.services.QuestionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +9,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class QuestionRestControllerTests {
 
@@ -30,10 +33,9 @@ public class QuestionRestControllerTests {
                 .build();
     }
     @Test
-    public void givenNoArgumentsWhenGgetQuestionsThenServiceIsInvoked()
-    {
+    public void givenNoArgumentsWhenGetQuestionsThenServiceIsInvoked() throws Exception {
 
+        this.mockMvc.perform(get("/questions")).andExpect(status().isOk());
+        verify(this.questionService, times(1)).getQuestions();
     }
-
-
 }
